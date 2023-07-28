@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form p {
+    margin-bottom: 10px;
+}
+
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: auto;
+    cursor: pointer;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
+
+/* Adjustments for the discount form field */
+.form-check input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+
+/* styling for selecting trainer's skills */
+.skills-checkbox {
+    list-style: none;
+    padding-left: 0; 
+}
+
+.skills-checkbox li {
+    margin-left: 30px; 
+    display: inline-block; 
+    margin-right: 10px; 
+}
+
+.register-button {
+    margin-left: 350px;
+    margin-top: 12px;
+    background-color: rgb(59, 59, 199);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 24px;
+}
+
+.register-button:hover {
+    background-color:rgb(119, 119, 237) ;
+}
+
+.form-label-tag {
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: underline;
+}
+

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+{% if not user.is_authenticated %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    #bg {
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .login-container {
+      display: flex;
+      margin-top: 300px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      max-width: 800px;
+      padding: 40px;
+      background-color: #f9f9f9;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.5); /* Transparent background */
+    }
+
+    .login-box h2 {
+      text-align: center;
+    }
+
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-box input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-box input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+  </style>
+</head>
+
+{% block background %}
+<body id="bg" style="background-image: url('{% static "gym/img/login1.jpg"%}');">
+</body>
+{%endblock%} 
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Login</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Login">
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+{%endif%}
+
+
+
+
+{%endblock%}

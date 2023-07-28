@@ -1,0 +1,184 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+thead th {
+    background-color: #f2f2f2;
+    padding: 12px;
+    text-align: left;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Styling for boolean (discount) column */
+tbody td:nth-child(7) {
+    text-align: center;
+}
+
+/* Styling for numeric (training) column */
+tbody td:nth-child(8) {
+    text-align: center;
+}
+
+/* Styling for datetime (registered_on) column */
+tbody td:nth-child(9) {
+    white-space: nowrap;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+}
+
+
+/* Your existing CSS styles go here */
+
+/* Custom styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Adjustments for the delete button */
+.delete-button {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+.delete-button:hover {
+    background-color: #76231d;
+}
+
+.edit-button {
+    margin-top: 2px;
+    background-color: rgb(59, 59, 199);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 6px 18px;
+
+}
+
+.edit-button:hover {
+    background-color: rgb(17, 17, 118);
+
+}
+
+
+
+.show-skills-btn {
+    background-color: #4c99af;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.show-skills-btn:hover {
+    background-color: #4571a0;
+}
+
+.show-clients-btn {
+    background-color: #4c99af;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    display: inline;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+.show-clients-btn:hover {
+    background-color: #4571a0;
+}
+
+
+
+.close-button {
+    position: absolute;
+    margin-bottom: 26px;
+    top: 0;
+    right: 0;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.subtract-session-btn {
+    background-color: red;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.subtract-session-btn:hover {
+    background-color: rgb(142, 34, 34);
+}

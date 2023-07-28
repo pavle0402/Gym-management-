@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.is_staff or user.is_superuser %}
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>PS02 - Register New Member</title>
+            <link rel="stylesheet" href="{% static 'gym/css/new_member.css'%}">
+        </head>
+        <body>
+            <div class="container">
+                <h1>Register New Member</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-label-tag"> {{field.label_tag}} </div> {{field}}
+                    {% endfor %}
+                    <button type="submit" class="register-button">Register</button>
+                </form>
+            </div>
+        </body>
+        </html>
+
+    {%endif%}
+{%endif%}
+{%endblock%}

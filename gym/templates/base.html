@@ -1,0 +1,41 @@
+{% load static %}
+{% include 'navbar.html'%}
+<head>
+    <style> 
+    .content {
+        margin-left: auto; 
+        transition: margin-left 0.3s ease;
+    }
+    </style>
+</head>
+<div class="content">
+    {% if messages %}
+    {% for message in messages %}
+    <div style="text-align: center; position: relative;" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" style="position: absolute; top: 0; right: 0;" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endfor%} 
+    {%endif%}
+
+{% block content %}
+    content for replacement
+{%endblock%}
+</div>
+
+
+{% block background %}
+<style>
+    #bg {
+        background-repeat: repeat;
+        background-size: 100%;
+    }
+</style>
+<body id="bg" style="background-image: url('{% static "gym/img/background.jpg"%}');"></body>
+{%endblock%} 
+
+<body>
+
+
+</body>
+

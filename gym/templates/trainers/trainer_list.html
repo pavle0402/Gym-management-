@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%} 
+{% if user.is_authenticated %}
+    {% if user.is_staff or user.is_superuser %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of trainers</title>
+    <link rel="stylesheet" href="{% static 'gym/css/members_list.css'%}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>List of trainers</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Picture</th>
+                    <th>Clients</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Birthdate</th>
+                    <th>Address</th>
+                    <th>Skills</th>
+                    <th>Registered On</th>
+                    {% if user.is_staff %}
+                        <th>Staff commands</th>
+                    {%endif%}
+                </tr>
+            </thead>
+            <tbody>
+                {% for trainer in trainers %}
+                <tr>
+                    <td>{{ trainer.name }}</td>
+                    <td>{{ trainer.last_name }}</td>
+                    <td><img src="{{trainer.picture.url}}" width="80px" height="80px"></td>
+                    <td>
+                        <button class="show-clients-btn" data-trainer-id="{{ trainer.pk }}" data-trainer-name="{{trainer.name}}">Show clients</button>
+                    </td>         
+                    <td>{{ trainer.email }}</td>
+                    <td>{{ trainer.phone_number }}</td>
+                    <td>{{ trainer.birthdate }}</td>
+                    <td>{{ trainer.address }}</td>
+                    <td>
+                        <button class="show-skills-btn" data-trainer-id="{{ trainer.pk }}" data-trainer-name="{{trainer.name}}">Show skills</button>
+                    </td>                  
+                    <td>{{ trainer.registered_on }}</td>
+                    {% if user.is_staff %}
+                        <td><button class="delete-button" data-trainer-id="{{ trainer.pk }}">Delete</button>
+                        <a href="{% url 'edit_trainer' trainer.pk %}"><button class="edit-button">Edit</button></a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete this member?</p>
+            <button id="confirmDeleteBtn">Delete</button>
+            <button id="cancelDeleteBtn">Cancel</button>
+        </div>
+    </div>
+</body>
+
+<!-- Modal for displaying clients -->
+<div class="modal" id="clientsModal">
+    <div class="modal-content">
+        <h2>List of <span id="trainerClients">{{trainer.name}}</span>'s clients</h2>
+        <ul id="clientsList"></ul>
+        <button id="closeClientsModalBtn">Close</button>
+    </div>
+</div>
+<!-- Modal for displaying skills -->
+<div class="modal" id="skillsModal">
+    <div class="modal-content">
+        <h2>List of  <span id="trainerSkills">{{ trainer_name }}</span>'s skills</h2>
+        <ul id="skillsList"></ul>
+        <button id="closeSkillsModalBtn">Close</button>
+    </div>
+</div>
+
+
+{% endif %}
+{%endif%}
+</html>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.getElementById("deleteModal");
+            const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+            const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
+            let trainerIdToDelete;
+
+            document.addEventListener("click", function(event) {
+                const target = event.target;
+                if (target.classList.contains("delete-button")) {
+                    trainerIdToDelete = target.dataset.trainerId;
+                    console.log("trainerIdToDelete:", trainerIdToDelete); 
+                    modal.style.display = "block";
+                }
+            });
+
+        cancelDeleteBtn.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        confirmDeleteBtn.addEventListener("click", function() {
+            if (trainerIdToDelete) {
+                fetch(`/trainers_list/${trainerIdToDelete}/delete`, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": getCookie("csrftoken"),
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    modal.style.display = "none";
+                    window.location.reload();
+                })
+                .catch(error => console.error("Error:", error));
+            }
+        });
+
+        // Helper function to get the CSRF token from cookies
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+    });
+
+
+
+// modals for displaying skills and clients
+document.addEventListener("DOMContentLoaded", function() {
+    const clientsModal = document.getElementById("clientsModal");
+    const skillsModal = document.getElementById("skillsModal");
+    const closeClientsModalBtn = document.getElementById("closeClientsModalBtn");
+    const closeSkillsModalBtn = document.getElementById("closeSkillsModalBtn");
+
+    document.addEventListener("click", function(event) {
+        const target = event.target;
+
+        // Show clients modal
+        if (target.classList.contains("show-clients-btn")) {
+            const trainerId = target.dataset.trainerId;
+            fetchTrainerData(trainerId, "clients");
+            const trainerName = target.dataset.trainerName;
+            document.getElementById('trainerClients').innerText = trainerName;
+            clientsModal.style.display = "block";
+        }
+
+        // Show skills modal
+        if (target.classList.contains("show-skills-btn")) {
+            const trainerId = target.dataset.trainerId;
+            fetchTrainerData(trainerId, "skills");
+            const trainerName = target.dataset.trainerName; // Get the trainer's name from the button attribute
+            document.getElementById("trainerSkills").innerText = trainerName; // Set the modal header
+            skillsModal.style.display = "block";
+        }
+    });
+
+    // Close clients modal
+    closeClientsModalBtn.addEventListener("click", function() {
+        clientsModal.style.display = "none";
+    });
+
+    // Close skills modal
+    closeSkillsModalBtn.addEventListener("click", function() {
+        skillsModal.style.display = "none";
+    });
+
+    // closing when clicking outside of modal
+    window.addEventListener("click", function(event) {
+        if (event.target === clientsModal) {
+            clientsModal.style.display = "none";
+        }
+        if (event.target === skillsModal) {
+            skillsModal.style.display = "none";
+        }
+    });
+
+
+    // Function to fetch trainer data using Ajax
+    function fetchTrainerData(trainerId, dataType) {
+        fetch(`/trainer_details/${trainerId}`)
+            .then(response => response.json())
+            .then(data => {
+                const dataList = data[dataType];
+                const dataListHtml = dataList.map(item => `<li>${item}</li>`).join("");
+                const modalContent = document.getElementById(`${dataType}List`);
+                modalContent.innerHTML = dataListHtml;
+            })
+            .catch(error => console.error("Error:", error));
+    }
+});
+
+// Helper function to get the CSRF token from cookies
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+} 
+
+
+
+</script>
+</body>
+
+
+
+{%endblock%}

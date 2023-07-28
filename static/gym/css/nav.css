@@ -1,0 +1,163 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #222;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+.navbar-toggle {
+    display: block;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 101; /* Set a higher z-index for the button to keep it above the sidebar */
+    transition: background-color 0.3s ease; /* Add a smooth transition for the background color */
+}
+
+/* Change background color on hover for navbar-toggle button */
+.navbar-toggle:hover {
+    background-color: #444;
+}
+
+
+/* Center the logo and title in the navbar-center div */
+.navbar-center {
+    display: flex;
+    align-items: center;
+    margin-left: 750px; /* Add a margin to move the logo and name to the right */
+}
+
+/* Make the logo bigger */
+.navbar-logo img {
+    width: 100px; /* Adjust the width as needed to make the logo bigger */
+    height: auto; /* Maintain the aspect ratio */
+}
+
+/* Add some spacing between the logo and title */
+.navbar-title {
+    font-family:serif;
+    font-size: 24px;
+    margin-left: 10px; /* Add some space between the logo and name */
+}
+
+/* Add spacing between the logo and title */
+.navbar-logo {
+    margin-right: 10px; /* Add spacing between the logo and title */
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 87px;
+    left: -250px;
+    height: 100%;
+    width: 250px;
+    background-color: #222;
+    color: #fff;
+    padding: 1rem;
+    transition: left 0.3s ease;
+    z-index: 100; /* Set a lower z-index for the sidebar */
+}
+
+
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar a {
+    font-size: 20px;
+    top: 10px;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+.sidebar a:hover {
+    color: #b8a3a3;
+    
+}
+
+.submenu {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li:hover .submenu {
+    display: block;
+}
+
+
+.sidebar .submenu > li > a {
+    padding-left: 30px;
+    font-size: 16px;
+}
+
+/* Slide content to the right when sidebar is active */
+.content {
+    margin-left: auto; 
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.active ~ .content {
+    margin-left: 300px; 
+}
+
+/* Hide the sidebar completely when it's closed */
+.sidebar:not(.active) {
+    margin-left: -250px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .user-info {
+        display: block;
+    }
+
+    .navbar-center {
+        display: none;
+    }
+
+    .sidebar {
+        left: -250px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .navbar.active {
+        margin-left: 0; /* Reset margin for the top navbar on smaller screens */
+    }
+
+    .sidebar.active ~ .content {
+        margin-left: 0; /* Reset margin for the content on smaller screens */
+    }
+
+    .sidebar:not(.active) {
+        left: -250px;
+    }
+}
