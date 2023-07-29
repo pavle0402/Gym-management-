@@ -129,7 +129,7 @@ def trainer_details(request, trainer_id):
     trainer = get_object_or_404(Trainer, pk=trainer_id)
     trainer_data = {
         'skills': [skill.name for skill in trainer.skills.all()],
-        'clients': [client.name for client in trainer.clients.all()]
+        'clients': [f"{client.id} - {client.name} {client.last_name}" for client in trainer.clients.all()]
     }
     return JsonResponse(trainer_data)
     

@@ -1,8 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
-from itertools import chain
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 
@@ -51,3 +51,10 @@ class Trainer(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.last_name}"
+    
+
+
+@receiver(post_save, sender=Member)
+def update_trainer_clients(sender, instance, created, **kwargs):
+    if created and instance.trainer:
+        instance.trainer.clients.add(instance)

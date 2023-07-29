@@ -42,7 +42,7 @@ class RegisterTrainerForm(forms.ModelForm):
 
     class Meta:
         model = Trainer
-        fields = ('name', 'last_name','picture', 'skills', 'clients', 'birthdate', 'phone_number', 'email', 'address')
+        fields = ('name', 'last_name','picture', 'skills', 'birthdate', 'phone_number', 'email', 'address')
 
         labels = {
             'name':'Name',
@@ -59,7 +59,6 @@ class RegisterTrainerForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-class', 'placeholder':"Enter trainers's name."}),
             'skills': forms.CheckboxSelectMultiple(),
-            'clients': forms.CheckboxSelectMultiple(),
             'last_name': forms.TextInput(attrs={'class':'form-class', 'placeholder':"Enter trainers's last name."}),
             'email': forms.EmailInput(attrs={'class':'form-class', 'placeholder':"Enter trainers's email."}),
             'address': forms.TextInput(attrs={'class':'form-class', 'placeholder':"Enter trainers's address."}),
