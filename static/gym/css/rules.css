@@ -1,0 +1,44 @@
+/* Reset some default styles for consistency */
+body, h1, h2, h3, p, ol, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    padding: 2rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+ol, ul {
+    margin-left: 2rem;
+}
+
+/* Additional styles for classes used in the HTML */
+.rules-section ol,
+.policies-section ul,
+.staff-guidelines-section ol,
+.code-of-conduct-section ol {
+    list-style-type: decimal;
+    margin-left: 2rem;
+}
+
+.contact-us-section ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+}
+

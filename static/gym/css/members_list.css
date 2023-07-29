@@ -106,6 +106,8 @@ tbody td:nth-child(9) {
 
 .delete-button:hover {
     background-color: #76231d;
+    transition: 0.3;
+
 }
 
 .edit-button {
@@ -120,6 +122,7 @@ tbody td:nth-child(9) {
 
 .edit-button:hover {
     background-color: rgb(17, 17, 118);
+    transition: 0.3;
 
 }
 
@@ -160,14 +163,18 @@ tbody td:nth-child(9) {
 
 
 .close-button {
-    position: absolute;
-    margin-bottom: 26px;
-    top: 0;
-    right: 0;
-    background-color: #ccc;
-    border: none;
+    position: relative;
+    left: 75px ;
+    background-color: gray;
+    color: white;
+    padding: 4px 8px;
     cursor: pointer;
-    font-weight: bold;
+    border-radius: 6px;
+}
+.close-button:hover {
+    background-color: rgb(199, 196, 196);
+    color: black;
+    transition: 0.3s;
 }
 
 
@@ -182,3 +189,4 @@ tbody td:nth-child(9) {
 .subtract-session-btn:hover {
     background-color: rgb(142, 34, 34);
 }
+

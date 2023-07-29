@@ -23,7 +23,7 @@
     <div class="sidebar">
         <h1 style="display: inline;">Hello {{request.user}}</h1>
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
             <li>
                 {% if user.is_authenticated %}
                     {% if user.is_staff or user.is_superuser %}
@@ -31,12 +31,13 @@
                         <ul class="submenu">
                             <li><a href="{% url 'register_member' %}">Register new member</a></li>
                             <li><a href="{% url 'register_trainer' %}">Register new trainer</a></li>
-                            <li><a href="#">Menu Item 3</a></li>
+                            <li><a href="{% url 'members_csv' %}">Export list of members</a></li>
+                            <li><a href="{% url 'trainers_csv' %}">Export list of trainers</a></li>
                         </ul>
                     </li>
                     <li><a href="{% url 'members_list' %}">Members</a></li>
                     <li><a href="{%url 'trainers_list' %}">Trainers</a></li>
-                    <li><a href="#">Rules and policy</a></li>
+                    <li><a href="{% url 'rules_policy' %}">Rules and policy</a></li>
                     {%endif%}
                 {%endif%}
             {% if user.is_authenticated %}

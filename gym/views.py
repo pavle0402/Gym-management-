@@ -8,8 +8,10 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+import csv
+from django.http import HttpResponse
 
-
+#staff authentication
 def home_view(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -25,11 +27,17 @@ def home_view(request):
     else:
         return render(request, 'home.html',{})
 
+
+
 def logout_view(request):
     logout(request)
     messages.success(request, "You have been logged out. See you soon.")
     return redirect('home')
 
+def rules_page_view(request):
+    return render(request, 'rules_and_policy.html', {})
+
+#members views
 class MembersListView(ListView):
     template_name = 'members/member_list.html'
     model = Member 
@@ -127,5 +135,72 @@ def trainer_details(request, trainer_id):
     
 
 
-#staff authentication
+#export to csv
+
+def member_list_csv(request):
+    response = HttpResponse(content_type="text/csv")
+    response['Content-Disposition'] = 'attachment; filename=member_list.csv'
+    #create a csv writer
+    writer = csv.writer(response)
+
+    #designate a model
+    members = Member.objects.all()
+
+    #overwriting discount field
+
+    #add column headings to the csv files(labels)
+    writer.writerow(['Name', 'Last Name', 'Trainer', 'Picture', 'Email', 'Phone Number', 'Birthdate', 'Address', 'Discount', 'Training', 'Registered On'])
+
+    #loop through the model
+    for member in members:
+       
+
+        writer.writerow(
+            [
+                member.name,
+                member.last_name,
+                member.trainer.name if member.trainer else "No mentor",
+                member.picture.url if member.picture else "",
+                member.email,
+                member.phone_number,
+                member.birthdate,
+                member.address,
+                member.discount == "Has discount" if member.discount else "Regular pricing",
+                member.training,
+                member.registered_on
+            ]
+        )
+
+    return response
+
+def trainers_list_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=trainers_list.csv'
+    writer = csv.writer(response)
+
+    trainers = Trainer.objects.all()
+
+    writer.writerow(['Name', 'Last Name', 'Picture', 'Clients', 'Skills' , 'Address', 'Email', 'Phone number', 'Birthdate', 'Registered on'])
+
+    for trainer in trainers: 
+
+        clients_names = ', '.join([client.name for client in trainer.clients.all()])
+        skills_names = ', '.join([skills.name for skills in trainer.skills.all()])
+
+        writer.writerow(
+            [
+                trainer.name,
+                trainer.last_name,
+                trainer.picture.url if trainer.picture else '',
+                clients_names if clients_names else 'No clients',
+                skills_names,
+                trainer.address,
+                trainer.email,
+                trainer.phone_number,
+                trainer.birthdate,
+                trainer.registered_on
+            ]
+        )
+
+    return response
 

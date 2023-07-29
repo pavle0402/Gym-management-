@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Rules and Policies</title>
+    <link rel="stylesheet" href="{% static 'gym/css/rules.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Gym</h1>
+    </header>
+
+    <main>
+        <section class="rules-section">
+            <h2>Gym Rules</h2>
+            <ol>
+                <li>No eating or drinking allowed inside the gym.</li>
+                <li>Wear appropriate workout attire and clean gym shoes at all times.</li>
+                <li>Always use a towel when using gym equipment.</li>
+                <li>Put back all equipment and weights to their designated places after use.</li>
+                <li>Respect other members and gym staff. Use appropriate language and behavior.</li>
+                <li>Follow the instructions of gym staff for your safety.</li>
+                <li>Refrain from using mobile phones in the workout area.</li>
+                <li>Use lockers to store your belongings and bring your lock.</li>
+                <li>Notify staff immediately of any broken equipment or safety hazards.</li>
+                <li>Keep noise levels to a minimum, especially in designated quiet areas.</li>
+            </ol>
+        </section>
+
+        <section class="policies-section">
+            <h2>Gym Policies</h2>
+            <ul>
+                <li>Membership fees are non-refundable and non-transferable.</li>
+                <li>Gym opening hours may vary and will be posted in advance.</li>
+                <li>Personal training sessions require advance booking and have additional fees.</li>
+                <li>Children under the age of 16 must be accompanied by an adult at all times.</li>
+                <li>Smoking and alcohol consumption are prohibited within the gym premises.</li>
+                <li>Gym management is not responsible for lost or stolen items.</li>
+                <li>Any damage caused to gym property due to negligence will be charged to the member.</li>
+                <li>Members are responsible for their own health and should seek medical advice before starting any exercise program.</li>
+                <li>Gym staff reserve the right to deny access to anyone violating the rules or displaying unsafe behavior.</li>
+            </ul>
+        </section>
+
+        <section class="staff-guidelines-section">
+            <h2>Staff Guidelines</h2>
+            <ol>
+                <li>Greet every member with a smile and offer assistance when needed.</li>
+                <li>Be knowledgeable about gym facilities, services, and class schedules.</li>
+                <li>Keep the gym clean and organized at all times.</li>
+                <li>Ensure all gym equipment is in proper working condition and report any issues to management promptly.</li>
+                <li>Be attentive to members' safety during workouts and provide guidance when necessary.</li>
+                <li>Maintain a professional and respectful demeanor towards all members and colleagues.</li>
+                <li>Handle member inquiries and complaints with patience and empathy, escalating issues to management when required.</li>
+                <li>Adhere to the gym's dress code and wear your staff badge at all times.</li>
+                <li>Participate in ongoing training and professional development to enhance your skills.</li>
+                <li>Respect member privacy and confidentiality regarding personal information.</li>
+                <li>Conduct yourself in a manner that reflects positively on the gym's reputation.</li>
+            </ol>
+        </section>
+
+        <section class="code-of-conduct-section">
+            <h2>Code of Conduct</h2>
+            <p>As a staff member of our gym, you are expected to adhere to the following code of conduct:</p>
+            <ol>
+                <li>Be honest, trustworthy, and act with integrity in all your interactions.</li>
+                <li>Respect the diversity and inclusivity of our gym community.</li>
+                <li>Avoid conflicts of interest and never accept gifts or favors from members or vendors.</li>
+                <li>Refrain from using your position for personal gain or unauthorized purposes.</li>
+                <li>Do not disclose confidential or sensitive information about the gym or its members.</li>
+                <li>Report any unethical behavior or policy violations to management immediately.</li>
+                <li>Follow all local laws and regulations related to gym operations.</li>
+            </ol>
+        </section>
+
+        <section class="contact-us-section">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, concerns, or feedback, feel free to get in touch with our staff:</p>
+            <ul>
+                <li>Email: info@psgym.com</li>
+                <li>Phone: +1 (123) 456-7890</li>
+                <li>Visit our front desk during operating hours.</li>
+            </ul>
+        </section>
+    </main>
+    </main>
+
+
+</body>
+</html>
+
+{%endblock%}
