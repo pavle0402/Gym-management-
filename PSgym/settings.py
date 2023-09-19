@@ -7,9 +7,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-5r)3-c$@freo-))sa=qgglr_chlcv#@2y=y3de21fxqo(3571i'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gymsystem-e1736926551d.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -102,6 +102,9 @@ USE_TZ = True
 
 #static
 STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
                     )
