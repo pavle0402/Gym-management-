@@ -207,6 +207,3 @@ For any questions or inquiries, contact me at pavles2002@gmail.com
 
  
 
- 
-
-All set and done just add section for screenshots for preview of project, already added the folder for that, just implement it in readme file. 
