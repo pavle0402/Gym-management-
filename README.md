@@ -52,7 +52,7 @@ To run gym management system, follow these steps:
 Clone the repository on your machine: 
 
  
-	git clone https://github.com/yourusername/ps02-gym-management.git 
+	git clone https://github.com/pavle0402/Gym-management-.git
 
  
 
